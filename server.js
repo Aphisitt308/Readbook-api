@@ -1,5 +1,5 @@
 const express = require("express");
-require("dotenv").config(); // for loading environment variables
+require("dotenv").config(); 
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -7,6 +7,14 @@ const path = require("path");
 const users = require("./routes/api/users");
 
 const app = express();
+
+app.use((req, res, next) => {
+   res.header('Access-Control-Allow-Origin', 'https://damp-beyond-98873.herokuapp.com')
+   res.header('Access-Control-Allow-Methods','POST, GET, PUT, PATCH, DELETE, OPTIONS')
+   res.header('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
+   return next()
+})
+}
 
 //middleware
 app.use(bodyParser.urlencoded({ extended: false }));
