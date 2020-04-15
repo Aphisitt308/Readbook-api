@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const users = require("./routes/api/users");
-const cors = require("cors");
+// const cors = require("cors");
 const app = express();
 
 // app.use((req, res, next) => {
@@ -14,9 +14,9 @@ const app = express();
 //    res.header('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
 //    return next()
 // })
-app.use(cors({
-   origin: 'https://damp-beyond-98873.herokuapp.com'
-}));
+// app.use(cors({
+//    origin: 'https://damp-beyond-98873.herokuapp.com'
+// }));
 
 
 
