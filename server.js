@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
 const users = require("./routes/api/users");
-
+const cors = require("cors");
 const app = express();
 
 // app.use((req, res, next) => {
@@ -14,7 +14,25 @@ const app = express();
 //    res.header('Access-Control-Allow-Headers','Content-Type, Option, Authorization')
 //    return next()
 // })
+app.use(cors({
+   origin: 'https://damp-beyond-98873.herokuapp.com'
+}));
 
+const allowedOrigins = ['http://localhost:3000',
+                      'https://damp-beyond-98873.herokuapp.com'];
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 //middleware
 app.use(bodyParser.urlencoded({ extended: false }));
