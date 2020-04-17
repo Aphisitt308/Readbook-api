@@ -43,12 +43,23 @@ router.post("/signup", (req, res) => {
       }
    });
 });
-router.get("/Profile/:_id", (req,res) => {
-   User.findById({_id: req.params.id})
-      .then(profile => res.status(200).json(profile))
-      .catch(err => res.status(400).json({id: "Error fetching profile by id"}))
 
- });
+User.get('/Profile', (req, res) => {
+   const decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+   User.findOne({
+     _id: decoded._id
+   })
+     .then(user => {
+       if (user) {
+         res.json(user)
+       } else {
+         res.send('User does not exist')
+       }
+     })
+     .catch(err => {
+       res.send('error: ' + err)
+     })
+ })
  
 
 router.patch(
