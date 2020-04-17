@@ -7,6 +7,7 @@ const path = require("path");
 const users = require("./routes/api/users");
 // const cors = require("cors");
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // app.use((req, res, next) => {
 //    res.header('Access-Control-Allow-Origin', 'https://damp-beyond-98873.herokuapp.com')
@@ -46,5 +47,5 @@ if (process.env.NODE_ENV === "production") {
    });
 }
 
-const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT}`));
