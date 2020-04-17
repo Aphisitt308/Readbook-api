@@ -44,7 +44,7 @@ router.post("/signup", (req, res) => {
    });
 });
 
-Router.get('/Profile', (req, res) => {
+router.get('/Profile', (req, res) => {
    const decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
    User.findOne({
      _id: decoded._id
