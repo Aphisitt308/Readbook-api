@@ -44,7 +44,7 @@ router.post("/signup", (req, res) => {
    });
 });
 
-User.get('/Profile', (req, res) => {
+Router.get('/Profile', (req, res) => {
    const decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
    User.findOne({
      _id: decoded._id
@@ -63,7 +63,7 @@ User.get('/Profile', (req, res) => {
  
 
 router.patch(
-   "/editProfile/:_id",
+   "/editProfile/",
    passport.authenticate("jwt", { session: false }),
    (req, res) => {
       const author = req.user.user_name;
